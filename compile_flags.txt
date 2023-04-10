@@ -1,0 +1,3 @@
+-I../ghc-riscv/rts/include/
+-I../ghc-riscv/.hie-bios/stage0/lib
+-I../ghc-riscv/_build/stage1/rts/build/include/

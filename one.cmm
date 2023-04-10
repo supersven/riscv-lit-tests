@@ -1,4 +1,4 @@
-// RUN: %test-ghc -c -fasm -keep-s-files %s
+// RUN: %test-ghc --make -no-hs-main -fasm -keep-s-files %s one_c.c
 one {
       R1 = 1;
 }
