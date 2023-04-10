@@ -1,0 +1,4 @@
+// RUN: %test-ghc -c -fasm -keep-s-files %s
+one {
+      R1 = 1;
+}
