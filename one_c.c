@@ -11,8 +11,8 @@ StgRegTable * StgRun (StgFunPtr f, StgRegTable *basereg);
 int main(int argc, char *argv[]) {
     StgRegTable * regTable = malloc(sizeof(StgRegTable));
 
-    StgRegTable *result = StgRun((StgFunPtr) one, regTable);
+    StgWord result = (StgWord) StgRun((StgFunPtr) one, regTable);
 
-    printf("R1: %lu", result->rR1.i);
+    printf("result: %lu\n", result);
     return 0;
 }

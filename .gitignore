@@ -1,5 +1,6 @@
 *.o
 *.s
+*.a.out
 Output/
 .lit_test_times.txt
 .direnv

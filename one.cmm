@@ -1,4 +1,15 @@
-// RUN: %test-ghc --make -no-hs-main -fasm -fno-empty-fasm -keep-s-files %s one_c.c
+// RUN: %test-ghc --make -no-hs-main -fasm -fno-empty-fasm -keep-s-files -optc=-g -o one.a.out %s one_c.c
+// RUN: cat one.s | FileCheck %s
+// RUN: qemu-riscv64 one.a.out | grep "result: 1"
+
+// CHECK: .section .text
+// CHECK: .balign 8
+// CHECK: .globl one
+// CHECK: .type one, @function
+// CHECK: one:
 one {
+      // CHECK: li x20, 1
       R1 = 1;
+      // CHECK: j StgReturn
+      jump StgReturn [R1];
 }

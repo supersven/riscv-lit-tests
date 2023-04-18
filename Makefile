@@ -3,5 +3,5 @@ run-tests:
 
 .PHONY: clean
 clean:
-	rm -f *.o *.s .lit_test_times.txt
+	rm -f *.o *.a.out *.s .lit_test_times.txt
 	rm -rf Output
