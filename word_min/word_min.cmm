@@ -1,0 +1,15 @@
+// RUN: %test-ghc %ghc-args -o %S/word_min.a.out %s %S/print_word.c
+// RUN: cat %S/word_min.s | FileCheck %s
+// RUN: qemu-riscv64 %S/word_min.a.out | grep -e "result: 0$"
+
+// CHECK: .section .text
+// CHECK: .balign 8
+// CHECK: .globl test
+// CHECK: .type test, @function
+// CHECK: test:
+test {
+      // CHECK: li x20, 0
+      R1 = 0;
+      // CHECK: j StgReturn
+      jump StgReturn [R1];
+}
