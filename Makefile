@@ -1,7 +1,13 @@
 run-tests:
 	lit -v .
 
-.PHONY: clean
+.PHONY: clean verbose very-verbose
+verbose:
+	lit -vv .
+
+very-verbose:
+	lit --show-all .
+
 clean:
-	rm -f *.o *.a.out *.s .lit_test_times.txt
-	rm -rf Output
+	rm -f **/*.o **/*.a.out **/*.s .lit_test_times.txt
+	rm -rf **/Output
