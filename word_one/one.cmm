@@ -1,6 +1,6 @@
 // RUN: %test-ghc %ghc-args -o %S/one.a.out %s %S/print_word.c
 // RUN: cat %S/one.s | FileCheck %s
-// RUN: qemu-riscv64 %S/one.a.out | grep "result: 1"
+// RUN: qemu-riscv64 %S/one.a.out | grep -e "^result: 1$"
 
 // CHECK: .section .text
 // CHECK: .balign 8
