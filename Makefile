@@ -1,4 +1,4 @@
-run-tests:
+run-tests: clean
 	lit -v .
 
 .PHONY: clean verbose very-verbose

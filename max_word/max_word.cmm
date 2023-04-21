@@ -1,6 +1,6 @@
-// RUN: %test-ghc --make -no-hs-main -fasm -fno-empty-fasm -keep-s-files -optc=-g -o max_word.a.out %s print_word.c
-// RUN: cat max_word.s | FileCheck %s
-// RUN: qemu-riscv64 max_word.a.out | grep "result: 18446744073709551615"
+// RUN: %test-ghc %ghc-args -o %S/max_word.a.out %s %S/print_word.c
+// RUN: cat %S/max_word.s | FileCheck %s
+// RUN: qemu-riscv64 %S/max_word.a.out | grep "result: 18446744073709551615"
 
 // CHECK: .section .text
 // CHECK: .balign 8

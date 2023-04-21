@@ -1,6 +1,6 @@
-// RUN: %test-ghc --make -no-hs-main -fasm -fno-empty-fasm -keep-s-files -optc=-g -o one.a.out %s print_word.c
-// RUN: cat one.s | FileCheck %s
-// RUN: qemu-riscv64 one.a.out | grep "result: 1"
+// RUN: %test-ghc %ghc-args -o %S/one.a.out %s %S/print_word.c
+// RUN: cat %S/one.s | FileCheck %s
+// RUN: qemu-riscv64 %S/one.a.out | grep "result: 1"
 
 // CHECK: .section .text
 // CHECK: .balign 8
