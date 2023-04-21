@@ -1,6 +1,6 @@
-// RUN: %test-ghc %ghc-args -o %S/max_word.a.out %s %S/print_word.c
-// RUN: cat %S/max_word.s | FileCheck %s
-// RUN: qemu-riscv64 %S/max_word.a.out | grep "result: 18446744073709551615"
+// RUN: %test-ghc %ghc-args -o %S/word_max.a.out %s %S/print_word.c
+// RUN: cat %S/word_max.s | FileCheck %s
+// RUN: qemu-riscv64 %S/word_max.a.out | grep "result: 18446744073709551615"
 
 // CHECK: .section .text
 // CHECK: .balign 8
