@@ -1,0 +1,15 @@
+// RUN: %test-ghc %ghc-args -o %S/minus_one.a.out %s %S/print_int.c
+// RUN: cat %S/minus_one.s | FileCheck %s
+// RUN: qemu-riscv64 %S/minus_one.a.out | grep "result: -1"
+
+// CHECK: .section .text
+// CHECK: .balign 8
+// CHECK: .globl one
+// CHECK: .type one, @function
+// CHECK: one:
+one {
+      // CHECK: li x20, -1
+      R1 = -1;
+      // CHECK: j StgReturn
+      jump StgReturn [R1];
+}
