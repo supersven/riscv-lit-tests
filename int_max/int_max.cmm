@@ -1,0 +1,15 @@
+// RUN: %test-ghc %ghc-args -o %S/int_max.a.out %s %S/print_int.c
+// RUN: cat %S/int_max.s | FileCheck %s
+// RUN: qemu-riscv64 %S/int_max.a.out | grep -e "^result: 9223372036854775807$"
+
+// CHECK: .section .text
+// CHECK: .balign 8
+// CHECK: .globl test
+// CHECK: .type test, @function
+// CHECK: test:
+test {
+      // CHECK: li x20, 9223372036854775807
+      R1 = 9223372036854775807;
+      // CHECK: j StgReturn
+      jump StgReturn [R1];
+}
