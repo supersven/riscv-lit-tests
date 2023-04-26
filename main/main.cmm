@@ -1,6 +1,6 @@
 // RUN: %test-ghc %ghc-args -o %S/main.a.out %s
 // RUN: cat %S/main.s | FileCheck %s
-// RUN: qemu-riscv64 %S/main.a.out | grep -e "^result: 3$"
+// RUN: qemu-riscv64 %S/main.a.out || test $? -eq 42
 
 // CHECK: .section .text
 // CHECK: .balign 8
@@ -8,5 +8,7 @@
 // CHECK: .type main, @function
 // CHECK: main:
 main {
-    foreign "C" exit(0);
+// CHECK: la [[REGISTER:x[0-9]+]], exit
+// CHECK: jalr ra, [[REGISTER]], 0
+    foreign "C" exit(42);
 }
