@@ -1,6 +1,6 @@
-// RUN: %test-ghc %ghc-args -o %S/main.a.out %s
-// RUN: cat %S/main.s | FileCheck %s
-// RUN: qemu-riscv64 %S/main.a.out | grep -e "^result: 1$"
+// RUN: %test-ghc %ghc-args -o %S/int.a.out %s
+// RUN: cat %S/int.s | FileCheck %s
+// RUN: qemu-riscv64 %S/int.a.out | grep -e "^result: 1$"
 
 // CHECK: .section .rodata.str,"{{[a-zA-Z]+}}",@progbits,1
 // CHECK: .balign 8
