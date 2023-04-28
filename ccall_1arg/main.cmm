@@ -1,10 +1,11 @@
 // RUN: %test-ghc %ghc-args -o %S/main.a.out %s
 // RUN: cat %S/main.s | FileCheck %s
-// RUN: qemu-riscv64 %S/main.a.out | grep -e "^result: a$"
+// RUN: qemu-riscv64 %S/main.a.out | grep -e "^result: 1$"
 
 // CHECK: .section .rodata.str,"{{[a-zA-Z]+}}",@progbits,1
 // CHECK: .balign 8
-// CHECK: string "result: a"
+// CHECK: [[STR_LABEL:[a-z0-9]+]]_str:
+// CHECK: string "result: %d"
 
 // CHECK: .section .text
 // CHECK: .balign 8
@@ -13,8 +14,9 @@
 // CHECK: main:
 main {
 // CHECK: la [[REGISTER_1:x[0-9]+]], printf
+// CHECK: la [[REGISTER_STR:x[0-9]+]], [[STR_LABEL]]
 // CHECK: jalr ra, [[REGISTER_1]], 0
-    foreign "C" printf("result: a");
+    foreign "C" printf("result: %d", 1);
 // CHECK: la [[REGISTER_1:x[0-9]+]], exit
 // CHECK: jalr ra, [[REGISTER_1]], 0
     foreign "C" exit(0);
