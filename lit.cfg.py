@@ -9,4 +9,4 @@ config.substitutions.append(('%test-ghc',
     '/home/sven/src/ghc-riscv/_build/stage1/bin/riscv64-unknown-linux-gnu-ghc'))
 
 config.substitutions.append(('%ghc-args',
-    '-no-hs-main -fasm -fno-empty-fasm -keep-s-files -optc=-g'))
+    '-no-hs-main -fasm -fno-empty-fasm -keep-s-files -optc=-g -ddump-to-file -ddump-cmm -ddump-cmm-opt'))
