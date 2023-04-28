@@ -4,3 +4,5 @@
 Output/
 .lit_test_times.txt
 .direnv
+*.dump-cmm
+*.dump-opt-cmm
