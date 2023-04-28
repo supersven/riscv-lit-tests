@@ -13,11 +13,11 @@
 // CHECK: .type main, @function
 // CHECK: main:
 main {
-// CHECK: la [[REGISTER_1:x[0-9]+]], printf
-// CHECK: la [[REGISTER_STR:x[0-9]+]], [[STR_LABEL]]
+// CHECK: la [[REGISTER_1:t[0-9]+]], printf
+// CHECK: la [[REGISTER_STR:t[0-9]+]], [[STR_LABEL]]
 // CHECK: jalr ra, [[REGISTER_1]], 0
     foreign "C" printf("result: %d", 1);
-// CHECK: la [[REGISTER_1:x[0-9]+]], exit
+// CHECK: la [[REGISTER_1:t[0-9]+]], exit
 // CHECK: jalr ra, [[REGISTER_1]], 0
     foreign "C" exit(0);
 }

@@ -8,7 +8,7 @@
 // CHECK: .type test, @function
 // CHECK: test:
 test {
-      // CHECK: li x20, 0
+      // CHECK: li s4, 0
       R1 = 0;
       // CHECK: j StgReturn
       jump StgReturn [R1];

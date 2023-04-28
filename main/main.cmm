@@ -8,7 +8,7 @@
 // CHECK: .type main, @function
 // CHECK: main:
 main {
-// CHECK: la [[REGISTER:x[0-9]+]], exit
+// CHECK: la [[REGISTER:t[0-9]+]], exit
 // CHECK: jalr ra, [[REGISTER]], 0
     foreign "C" exit(42);
 }
