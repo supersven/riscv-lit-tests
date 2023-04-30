@@ -6,3 +6,4 @@ Output/
 .direnv
 *.dump-cmm
 *.dump-opt-cmm
+*.dump-asm*

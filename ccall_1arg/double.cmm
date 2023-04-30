@@ -1,0 +1,22 @@
+// RUN: %test-ghc %ghc-args -o %S/double.a.out %s %S/lib.c
+// RUN: cat %S/double.s | FileCheck %s
+// RUN: qemu-riscv64 %S/double.a.out | grep -e "^result: 1.500000$"
+
+// CHECK: .section .text
+// CHECK: .balign 8
+// CHECK: .globl main
+// CHECK: .type main, @function
+// CHECK: main:
+main {
+// CHECK: li [[REGISTER_0:t[0-9]+]], 4609434218613702656
+// CHECK: fmv.d.x [[REGISTER_F0:ft[0-9]+]], [[REGISTER_0]]
+    float64 f;
+    f = 1.5;
+// CHECK  fmv.d fa0, [[REGISTER_F0]]
+// CHECK: la [[REGISTER_1:t[0-9]+]], print_double
+// CHECK: jalr ra, [[REGISTER_1]], 0
+    foreign "C" print_double(f);
+// CHECK: la [[REGISTER_2:t[0-9]+]], exit
+// CHECK: jalr ra, [[REGISTER_2]], 0
+    foreign "C" exit(0);
+}
